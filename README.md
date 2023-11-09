@@ -1,6 +1,6 @@
 # Suckless software
 
-There are dots for suckless software (dwm, st, dmenu). To use this dots you first should apply patches. The patches I use can be found [here](https://h05t.xyz/x/sl).
+There are dots for suckless software (dwm, st, dmenu). To use this dots you first should apply patches. The patches I use can be found [here](https://github.com/qo/sl).
 
 # Font
 
