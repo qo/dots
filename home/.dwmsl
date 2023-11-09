@@ -1,0 +1,59 @@
+#!/bin/bash
+
+avg () {
+	echo $((($1 + $2) / 2))
+}
+
+# my laptop has two batteries, so i calculate the average
+# of both batteries levels
+
+bat () {	
+	bat_1=`acpi | grep -oP "\d+%" | awk 'NR==1 { print $0 }'`
+	bat_2=`acpi | grep -oP "\d+%" | awk 'NR==2 { print $0 }'`
+
+	bat_1_num=${bat_1%\%*}
+	bat_2_num=${bat_2%\%*}
+
+	bat_avg="$(avg bat_1_num bat_2_num)"
+
+	echo "$bat_avg%"
+}
+
+bat_icon () {
+	echo -e '\uf57f'
+}
+
+_date () {
+	datetime="$(date)"
+	date="$(echo $datetime | awk -F' ' ' { print $2" "$3 } ')"
+	echo $date
+}
+
+_date_icon () {
+	echo -e "\uf133"
+}
+
+_time () {
+	datetime="$(date)"
+	time="$(echo $datetime | awk -F' ' ' { print $4 } ' | awk -F':' ' { print $1":"$2 } ')"
+	echo $time
+}
+
+_time_icon () {
+	echo -e "\uf017"
+}
+
+while :
+do
+	d=$(_date)
+	di=$(_date_icon)
+
+	t=$(_time)
+	ti=$(_time_icon)
+
+	b=$(bat)
+	bi=$(bat_icon)
+
+	xsetroot -name "| $di $d | $ti $t | $bi $b"
+	sleep 1;
+done;

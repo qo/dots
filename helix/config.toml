@@ -1,0 +1,9 @@
+[editor]
+line-number = "relative"
+mouse = false
+idle-timeout = 0
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "block"
